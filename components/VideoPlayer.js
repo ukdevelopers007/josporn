@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-    ThumbUpIcon, ClockIcon, FilmIcon, EyeIcon, PlusIcon, MinusIcon, CogIcon, InformationCircleIcon, DownloadIcon
+    ThumbUpIcon,ThumbDownIcon, ClockIcon, FilmIcon, EyeIcon, PlusIcon, MinusIcon, CogIcon, InformationCircleIcon, DownloadIcon
 } from '@heroicons/react/solid';
 import Router, { useRouter } from "next/router";
 import { Fragment } from 'react'
@@ -12,57 +12,53 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots, preloaded_video_qualityy, pornstar, loggedIn }) => {
-
-
-
-    let uniquePornstars = pornstar.filter((element, index) => {
-        return pornstar.indexOf(element) === index;
-    });
+const VideoPlayer = ({ video_details,screenshots}) => {
 
 
     const videoPlayerRef = useRef(null)
     const playBtnRef = useRef(null)
     const router = useRouter()
 
-    const [Quality, setQuality] = useState(Qualitys)
-    const [VideoSrc, setVideoSrc] = useState(videolink_qualities_screenshots.default_video_src)
-    const [tags, settags] = useState([]);
+    
+    const [Quality, setQuality] = useState("1080p")
+    const [VideoSrc, setVideoSrc] = useState(video_details.src['720p'])
     const [screenshotlayoutToggle, setscreenshotlayoutToggle] = useState(false)
     const [PlusVisible, setPlusVisible] = useState('flex')
     const [MinusVisible, setMinusVisible] = useState('hidden')
-    const [tagString, settagString] = useState('');
+    let videoQualities=[];
+    videoQualities.push('1080p')
+    videoQualities.push('720p')
+    videoQualities.push('480p')
+    videoQualities.push('360p')
 
 
     //Quality Changer Onclick
     const menuItemOnClick = (quality) => {
+
+        setQuality(quality);
+
         if (quality != Quality) {
 
             const currentTime = videoPlayerRef.current.currentTime;
-            setQuality(quality);
-            const index = videolink_qualities_screenshots.video_qualities_available.indexOf(quality)
             videoPlayerRef.current.load()
             videoPlayerRef.current.currentTime = currentTime
             videoPlayerRef.current.play();
-            setVideoSrc(videolink_qualities_screenshots.video_qualities_available_withURL[index])
+
+            let qua='';
+            if(quality == "1080p"){
+                qua="720p"
+            }
+            if(quality == "720p"){
+                qua="480p"
+            }
+            if(quality == "480p"){
+                qua="360p"
+            }
+            if(quality == "360p"){
+                qua="240p"
+            }
+            setVideoSrc(video_details.src[qua])
         }
-
-    }
-
-    const seekTimeOnclick = (obj) => {
-        const time = obj.seekTime;
-
-        const extractMinute = parseInt(time.substring(0, time.indexOf(":")))
-        const extractSeconds = parseInt(time.substring(time.indexOf(":") + 1, time.length))
-
-        console.log(`extractMinute:${extractMinute}`);
-        console.log(`extractSeconds:${extractSeconds}`);
-
-        //videotime will is set in seconds by default
-        videoPlayerRef.current.currentTime = (extractMinute * 60) + extractSeconds
-        videoPlayerRef.current.play();
-        console.log((extractMinute * 60) + extractSeconds);
-
     }
 
     const openScreenShotLayout = () => {
@@ -82,35 +78,9 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
 
     const download = () => {
 
-        if (!loggedIn) {
-            setCookie('videoRoute', window.location.href
-            );
-            router.push('/account/login')
-        } else {
-            router.push(VideoSrc)
-        }
+        router.push(VideoSrc)
+
     }
-
-
-    useEffect(() => {
-
-        let uniqarray = [...new Set(videolink_qualities_screenshots.tagsArray)];
-        settags(uniqarray)
-
-        // Create single string of all tags using comma
-        let tagsString = ''
-        uniqarray.map((tag, index) => {
-            if (index === 0) {
-                tagsString = tag
-            } else {
-                tagsString = tagsString + ", " + tag
-            }
-        })
-        settagString(tagsString);
-
-    }, []);
-
-
 
 
     return (
@@ -141,11 +111,15 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
                     </div>
                     <div className='flex items-center space-x-1'>
                         <EyeIcon className="h-6 text-blue-600  md:h-9" />
-                        <p className=' font-bold'>{video_details.views.length > 1 ? video_details.views : "46513"}</p>
+                        <p className=' font-bold'>{video_details.views}</p>
                     </div>
                     <div className='flex items-center space-x-1'>
                         <ThumbUpIcon className="h-6 text-green-500  md:h-9" />
-                        <p className=' font-bold'>{video_details.likedPercent}</p>
+                        <p className=' font-bold'>{video_details.like}</p>
+                    </div>
+                    <div className='flex items-center space-x-1'>
+                        <ThumbDownIcon className="h-6 text-red-500  md:h-9" />
+                        <p className=' font-bold'>{video_details.dislike}</p>
                     </div>
 
 
@@ -176,7 +150,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
                             <Menu.Items className="z-50 origin-top-right absolute right-0 bottom-11 mt-2 w-[80px] rounded-md shadow-lg  bg-gray-200  ">
                                 <div className=" rounded">
 
-                                    {videolink_qualities_screenshots.video_qualities_available.map(quality => {
+                                    {videoQualities.map(quality => {
                                         return (
                                             <Menu.Item key={quality} onClick={() => { menuItemOnClick(quality) }}>
                                                 {({ active }) => (
@@ -212,7 +186,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
             {/* Tags */}
             <div className='flex flex-wrap mb-2 '>
                 {
-                    tags.map(key => {
+                    video_details.catergories.map(key => {
                         if (key.length >= 1) {
 
                             return (
@@ -227,22 +201,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
 
             <div className='flex items-center justify-between'>
 
-                {uniquePornstars.length >= 1 && <div className='flex items-center py-2 flex-wrap'>
-                    <span className='font-semibold text-md '>Pornstar:</span>
-                    {uniquePornstars.map(pornstars => {
-                        return (
-
-                            <a key={pornstars} href={`/search/${pornstars.trim().replace(" ", "+")}`}>
-                                <p className='pl-1 pr-1 text-sm md:text-md ml-1 mt-1 bg-red-500 text-white cursor-pointer font-inter font-semibold rounded px-2 hover:bg-red-700'>
-                                    {pornstars}
-                                </p>
-                            </a>
-
-
-                        )
-                    })}
-                </div>
-                }
+         
 
                 <div onClick={openScreenShotLayout} className='my-1 hidden lg:flex items-center bg-gray-600 text-white  justify-between py-0.5 px-2 pr-3  hover:bg-gray-700  rounded cursor-pointer   md:w-1/4 md:space-x-4'>
 
@@ -267,13 +226,13 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
 
 
             <div className={` grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  ${screenshotlayoutToggle ? "grid scale-100" : "scale-0 h-0"}  transition-all duration-300 `}>
-                {videolink_qualities_screenshots.screenshotsArray.map(shot => {
+                {screenshots.map(shot => {
                     return (
-                        <div onClick={() => { seekTimeOnclick(shot) }} className='p-1 relative' key={shot}>
+                        <div className='p-1 relative' key={shot}>
                             <img
                                 className='rounded'
                                 alt='loading'
-                                src={shot.url}
+                                src={shot}
 
                             ></img>
                             <strong className='absolute bottom-0 right-0 text-white m-2 bg-transparent bg-black font-inter rounded  bg-opacity-50 text-sm px-1'>{shot.seekTime}</strong>

@@ -122,6 +122,7 @@ export default async function handler(req, res) {
             })
         }
     }
+    
 
     if (finalDataArray.length == 0) {
         res.status(200).json({ finalDataArray: finalDataArray, pages: pages, noVideos: true })
