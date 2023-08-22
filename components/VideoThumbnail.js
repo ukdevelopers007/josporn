@@ -6,6 +6,7 @@ import PopunderAds from "./Ads/Popunder";
 import Link from "next/link";
 
 function VideoThumbnail({ details }) {
+
   const [videoPage, setvideoPage] = useState(false);
 
   function abcd() {
@@ -15,7 +16,7 @@ function VideoThumbnail({ details }) {
   }
   useEffect(() => {
     setTimeout(() => {
-        setpageLoaded(true)
+      setpageLoaded(true)
 
     }, 2000);
     abcd();
@@ -23,17 +24,8 @@ function VideoThumbnail({ details }) {
 
   const [spinnerloader, setspinnerloader] = useState(false);
 
-  const OnClickHandler = () => {
-    const object = {
-      Title: video.TitleArray,
-      duration: video.durationArray,
-      likedPercent: video.likedPercentArray,
-      thumbnail: video.thumbnailArray,
-      views: video.viewsArray,
-    };
 
-    localStorage.setItem("videoplayer", JSON.stringify(object));
-  };
+
 
   const [isHovered, setIsHovered] = useState(false);
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState(0);
@@ -74,7 +66,6 @@ function VideoThumbnail({ details }) {
     <div className="">
       <Link
         href={`/video/${details.title}`}
-        onClick={OnClickHandler}
         data-title={details.title}
       >
         <div
@@ -91,16 +82,16 @@ function VideoThumbnail({ details }) {
               className="hoverable-image"
             />
 
-            {pageLoaded && details.screenshots.map((url, index) => {
+            {isHovered && details.screenshots.map((url, index) => {
               return (
                 <img
+                key={url}
                   src={url}
                   alt="Hover Image"
-                  className={`absolute top-0 left-0 ${
-                    isHovered && index <= currentScreenshotIndex
+                  className={`absolute top-0 left-0 ${isHovered && index <= currentScreenshotIndex
                       ? 'opacity-100'
                       : 'opacity-0'
-                  } transition-opacity duration-300`}                />
+                    } transition-opacity duration-300`} />
               );
             })}
           </div>
@@ -122,7 +113,7 @@ function VideoThumbnail({ details }) {
             <div className="flex justify-center items-center ">
               <EyeIcon className="icon text-yellow-400" />
               <p className="text-sm md:text-md text-gray-700 font-light font-inter">
-                {details.views.length >4 ? details.views.substring(0,2)+"k":details.views}
+                {details.views.length > 4 ? details.views.substring(0, 2) + "k" : details.views}
               </p>
             </div>
 

@@ -23,7 +23,7 @@ import Outstreams from "../../components/Ads/Outstream";
 function Videoplayer({ serverError, relatedVideos, videodetails, screenshots }) {
   const router = useRouter();
 
-
+console.log("videodetails:"+videodetails.title);
   const [Quality, setQuality] = useState("720P");
 
 
