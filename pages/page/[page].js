@@ -37,7 +37,8 @@ function Category({ currentPage, lastPage, finalDataArray }) {
       </div>
 
       {/* PAGINATION */}
-      <Pagination data={{ currentPage: currentPage, lastPage: lastPage }} />
+      <Pagination data={{ currentPage:currentPage, lastPage: lastPage, previous: `/page/${parseInt(currentPage) - 1}`, next: `/page/${parseInt(currentPage) + 1}` }} />
+
 
       <RecommendedAds />
     </>

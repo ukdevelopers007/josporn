@@ -56,7 +56,9 @@ export default function Home({
 
             {/* PAGINATION */}
             
-            <Pagination data={{ currentPage: "1", lastPage: lastPage, }} />
+
+            <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/page/${parseInt("1") - 1}`, next: `/page/${parseInt("1") + 1}` }} />
+
 
         </div>
       </main>

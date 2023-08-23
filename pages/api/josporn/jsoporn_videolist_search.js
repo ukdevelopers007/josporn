@@ -9,33 +9,33 @@ import {
   VIDEOITEMS_DB_COUNT_CATEGORY,
 } from "../db_query/videoQuery";
 
+import {videolist_Scrape_search} from "../lib/videolist_Scrape_search"
+
 await dbConnect();
+
 
 
 export default async function handler(req, res) {
 
+  let key = req.body.key;
   let page = req.body.page;
-  var category = req.body.category;
  
 
 
-  var finalDataArray = await getVideoItemByCategory(page, category);
+  const {finalDataArray,lastpage} = await videolist_Scrape_search(`https://josporn.club/search/${key}/page-${page}/`);
 
-  var pagecount = await VIDEOITEMS_DB_COUNT_CATEGORY(category);
-
-
-
+  // var pagecount = await VIDEOITEMS_DB_COUNT_CATEGORY(category);
 
   if (finalDataArray.length == 0) {
     res.status(200).json({
       finalDataArray: finalDataArray,
-      pages: pagecount,
+      lastPage: lastpage,
       noVideos: true,
     });
   } else {
     res.status(200).json({
       finalDataArray: finalDataArray,
-      pages: Math.round(pagecount / 40),
+      lastPage: lastpage,
       noVideos: false,
     });
   }

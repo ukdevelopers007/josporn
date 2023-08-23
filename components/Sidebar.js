@@ -3,27 +3,19 @@ import { useRouter } from "next/router";
 import Link from 'next/link';
 import categories from "../JsonData/category.json"
 
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
 
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-}
 
 function Sidebar() {
     const router = useRouter();
 
+
+    categories.sort((a, b) => {
+        if (a.title && b.title) {
+          return a.title.localeCompare(b.title);
+        }
+        // Handle cases where one or both objects don't have a "name" property
+        return 0; // No change in sorting order
+      });
 
 
     return (
@@ -31,7 +23,7 @@ function Sidebar() {
             {categories.map(category => {
                 return (
 
-                    <Link key={category.title} href={`/${category.title.toLowerCase().trim()}`}>
+                    <Link key={category.title} href={`/${category.title.trim()}`}>
                         <h2 className="w-44 text-md border-2 border-white hover:bg-button rounded-md text-white  p-1 pl-4 pr-2 cursor-pointer bg-theme capitalize">{category.title}</h2>
                     </Link>
 

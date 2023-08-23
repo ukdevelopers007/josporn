@@ -5,10 +5,10 @@ import Header from '../../../../components/searchPage/Header'
 import RecommendedAds from '../../../../components/Ads/RecommendedAds';
 import Head from 'next/head'
 import Pagination from '../../../../components/Pagination';
-import { scrapeVideos } from '../../../../config/spangbang';
 
 
-function Category({ video_collection, pages }) {
+
+function Category({ finalDataArray, lastPage, currentPage }) {
 
     const router = useRouter();
     const { searchkey, page } = router.query
@@ -17,7 +17,7 @@ function Category({ video_collection, pages }) {
     function capitalizeFirstLetter(string) {
         console.log(string.charAt(0).toUpperCase() + string.slice(1));
         return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+    }
 
     return (
         <>
@@ -30,11 +30,13 @@ function Category({ video_collection, pages }) {
             <Header keyword={searchkey.replace("+", " ")} pageNumber={currentPageNumberURL} />
             <div className="flex">
                 <Sidebar />
-                <Videos data={video_collection} />
+                <Videos data={finalDataArray} />
 
             </div>
 
-            <Pagination data={{ url: `/search/${searchkey.toLowerCase().trim()}`, currentPageNumberURL: currentPageNumberURL, pages: pages, }} />
+            {parseInt(lastPage) != 0 &&
+                <Pagination data={{ currentPage: currentPage, lastPage: lastPage, previous: `/search/${searchkey}/page/${parseInt(currentPage) - 1}`, next: `/search/${searchkey}/page/${parseInt(currentPage) + 1}` }} />
+            }
 
             <RecommendedAds />
         </>
@@ -49,22 +51,30 @@ export default Category
 export async function getServerSideProps(context) {
 
     const { searchkey, page } = context.query;
-    var finalDataArray = []
-    var pages = []
 
+    const data = { key: searchkey, page: page };
 
-    const obj = await scrapeVideos(`https://spankbang.party/s/${searchkey.toLowerCase().trim()}/${page}/?o=all`)
-    finalDataArray = obj.finalDataArray
-    pages = obj.pages
-    console.log(`https://spankbang.party/s/${searchkey.toLowerCase().trim()}/${page}/?o=all`)
+    const rawResponse = await fetch(
+        `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist_search`,
+        {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }
+    );
 
+    const resData = await rawResponse.json();
 
     return {
         props: {
-            video_collection: finalDataArray,
-            pages: pages
-        }
-    }
+            finalDataArray: resData.finalDataArray,
+            lastPage: resData.lastPage,
+            currentPage: page,
+        },
+    };
 
 
 }

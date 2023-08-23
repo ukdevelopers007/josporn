@@ -7,36 +7,18 @@ import Head from 'next/head'
 import Pagination from '../../../components/Pagination';
 import { useEffect } from 'react';
 import { getCookie, setCookie } from "cookies-next";
-import { scrapeVideos } from '../../../config/spangbang';
 
 
-function Category({ video_collection, pages }) {
+function Category({ finalDataArray, lastPage }) {
 
   const router = useRouter();
   const { searchkey } = router.query
   const currentPageNumberURL = '1'
 
   async function updateKeywords_DB() {
-    if (video_collection.length !== 0 && typeof getCookie('email') !== 'undefined') {
+    if (finalDataArray.length !== 0 && typeof getCookie('email') !== 'undefined') {
 
-      const parcelData = { searchKey: searchkey.trim(), email: getCookie('email') }
-      const rawResponse = await fetch(`${process.env.FRONTEND_URL}api/login/updatekeywords`, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(parcelData),
-      });
 
-      const res = await rawResponse.json();
-      console.log(res);
-      if (res.sucess) {
-        var json_str = JSON.stringify(res.data.keywords);
-        setCookie('keywords', json_str, { maxAge: 900000 });
-      }
-
-    } else {
       const keywordsCookie = getCookie('keywords')
       if (typeof keywordsCookie !== 'undefined') {
         const parsedArray = JSON.parse(keywordsCookie)
@@ -55,6 +37,8 @@ function Category({ video_collection, pages }) {
           setCookie('keywords', json_str, { maxAge: 900000 });
         }
       }
+
+
     }
   }
 
@@ -64,7 +48,6 @@ function Category({ video_collection, pages }) {
 
 
   function capitalizeFirstLetter(string) {
-    console.log(string.charAt(0).toUpperCase() + string.slice(1));
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
@@ -84,13 +67,13 @@ function Category({ video_collection, pages }) {
       <Header keyword={searchkey.replace("+", " ")} pageNumber={currentPageNumberURL} />
       <div className="flex">
         <Sidebar />
-        <Videos data={video_collection} />
+        <Videos data={finalDataArray} />
 
       </div>
 
-
-      <Pagination data={{ url: `/search/${searchkey.toLowerCase().trim()}`, currentPageNumberURL: currentPageNumberURL, pages: pages, }} />
-
+      {parseInt(lastPage) != 0 &&
+        <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/search/${searchkey}/page/${parseInt("1") - 1}`, next: `/search/${searchkey}/page/${parseInt("1") + 1}` }} />
+      }
 
       <RecommendedAds />
     </>
@@ -105,22 +88,30 @@ export default Category
 export async function getServerSideProps(context) {
 
   const { searchkey } = context.query;
-  var finalDataArray = []
-  var pages = []
 
 
-  const obj = await scrapeVideos(`https://spankbang.party/s/${searchkey.toLowerCase().trim()}/?o=all`)
-  finalDataArray = obj.finalDataArray
-  pages = obj.pages
-  console.log(`https://spankbang.party/s/${searchkey.toLowerCase().trim()}/?o=all`)
+  const data = { key: searchkey, page: "1" };
+  const rawResponse = await fetch(
+    `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist_search`,
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
+  const resData = await rawResponse.json();
 
   return {
     props: {
-      video_collection: finalDataArray,
-      pages: pages
-    }
-  }
+      finalDataArray: resData.finalDataArray,
+      lastPage: resData.lastPage,
+      currentPage: 1,
+    },
+  };
 
 
 }

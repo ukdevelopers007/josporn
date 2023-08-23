@@ -16,7 +16,7 @@ const Pagination = ({ data }) => {
 
             <div className={`${parseInt(currentPage) === 1 || parseInt(currentPage) === parseInt(lastPage) ? "justify-around" : "justify-between"} flex items-center   md:justify-center`}>
 
-                <Link href={`/page/${parseInt(currentPage) - 1}`}>
+                <Link href={data.previous}>
                     <div className={`${parseInt(currentPage) === 1 ? "hidden" : ""}`} >
                         <button className={`scale-90 md:scale-100 font-inter sm:text-med font-bold   sm:mx-4  rounded-lg bg-button px-6 py-2 text-white hover:button_hover`}>{'<'}</button>
                     </div>
@@ -32,7 +32,7 @@ const Pagination = ({ data }) => {
 
            
 
-                <Link href={`/page/${parseInt(currentPage) + 1}`}>
+                <Link href={data.next}>
                     <div className={`${parseInt(currentPage) === parseInt(lastPage) ? "hidden" : ""}`} >
                         <button className={`scale-90 md:scale-100 font-inter sm:text-md font-bold   sm:mx-4  rounded-lg bg-button px-6 py-2 text-white hover:button_hover ml-1`}>{'>'}</button>
                     </div>

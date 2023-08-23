@@ -190,7 +190,7 @@ const VideoPlayer = ({ video_details,screenshots}) => {
                         if (key.length >= 1) {
 
                             return (
-                                <a key={key} href={`/search/${key.trim()}`}>
+                                <a key={key} href={`/${key.trim()}`}>
                                     <p className='text-xs md:text-sm mr-1  mt-1 cursor-pointer hover:bg-gray-900 rounded px-[5px] py-[2px]  font-inter text-white bg-yellow-600'>{key}</p>
                                 </a>
                             )

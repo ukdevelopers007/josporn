@@ -107,7 +107,7 @@ function Navbar() {
     const goSearch = (e) => {
         e.preventDefault();
 
-
+        setshowSuggested(false);
         if (e.target[0].value) {
             router.push(`/search/${e.target[0].value.trim()
                 }`)
@@ -204,7 +204,7 @@ function Navbar() {
                                         <SearchIcon className='h-6 w-6' />
                                     </div>
 
-                                    <Menu as="div" className="relative mx-1 mr-2">
+                                    {/* <Menu as="div" className="relative mx-1 mr-2">
                                         <div>
                                             <Menu.Button className=" ">
 
@@ -260,7 +260,7 @@ function Navbar() {
 
                                             </Menu.Items>
                                         </Transition>
-                                    </Menu>
+                                    </Menu> */}
 
 
                                     <Disclosure.Button className="lg:hidden items-center justify-center rounded-md text-white hover:bg-button p-2">

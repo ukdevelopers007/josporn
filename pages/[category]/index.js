@@ -53,7 +53,7 @@ export default function Home({
     return (
         <div className=" ">
             <Head>
-                <title>Josporn: Free Porn Videos and HD Sex Movies</title>
+                <title>{category}: Free Porn Videos and HD Sex Movies</title>
                 <meta
                     name="description"
                     content="Josporn is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on Josporn!"
@@ -82,7 +82,7 @@ export default function Home({
 
                     {/* PAGINATION */}
                     {lastPage != "0" &&
-                        <Pagination data={{ currentPage: "1", lastPage: lastPage, }} />
+                        <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/${category}/page/${parseInt("1") - 1}`, next: `/${category}/page/${parseInt("1") + 1}` }} />
                     }
 
                 </div>
