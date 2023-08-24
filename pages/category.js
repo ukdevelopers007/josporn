@@ -57,7 +57,6 @@ function Index() {
             <div className={`grid grid-cols-3 py-3 sm:grid-cols-3 gap-2 md:gap-3 lg:gap-4  md:grid-cols-4 lg:grid-cols-5`}>
                 {shuffle(jsonData).map(category => {
 
-                    {console.log(category.image)}
                     return (
                         <Link key={category.title} href={`/${category.title.trim()}`}>
                                 <div className='  relative hover:scale-105 transform transition duration-150 rounded   aspect-box  ' >

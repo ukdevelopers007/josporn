@@ -58,7 +58,8 @@ export async function getStaticProps(context) {
   const { page } = context.params;
   const data = { page: page };
   const rawResponse = await fetch(
-    `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist`,
+
+    `${process.env.BACKEND_URL}/jsoporn_videolist`,
     {
       method: "POST",
       headers: {

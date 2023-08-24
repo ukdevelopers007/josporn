@@ -129,7 +129,8 @@ export async function getServerSideProps(context) {
 
   try {
     const rawResponse = await fetch(
-      `${process.env.FRONTEND_URL}/api/josporn/jospornVideoPage`,
+
+      `${process.env.BACKEND_URL}/jospornVideoPage`,
       {
         method: "POST",
         headers: {

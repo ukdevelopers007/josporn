@@ -74,7 +74,7 @@ export default function Home({
 export async function getStaticProps({ req, res }) {
   const data = { page: "1" };
   const rawResponse = await fetch(
-    `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist`,
+    `${process.env.BACKEND_URL}/jsoporn_videolist`,
     {
       method: "POST",
       headers: {

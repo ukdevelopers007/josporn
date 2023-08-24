@@ -92,7 +92,8 @@ export async function getServerSideProps(context) {
 
   const data = { key: searchkey, page: "1" };
   const rawResponse = await fetch(
-    `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist_search`,
+
+    `${process.env.BACKEND_URL}/jsoporn_videolist_search`,
     {
       method: "POST",
       headers: {

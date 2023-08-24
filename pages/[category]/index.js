@@ -98,7 +98,7 @@ export default function Home({
 
 export async function getStaticPaths() {
     return {
-        paths: [{ params: { category: "group" } }],
+        paths: [{ params: { category: "Group" } }],
         fallback: true, // false or 'blocking'
     };
 }
@@ -109,7 +109,8 @@ export async function getStaticProps(context) {
 
     const data = { page: "1", category: category };
     const rawResponse = await fetch(
-        `${process.env.FRONTEND_URL}/api/josporn/jsoporn_videolist_category`,
+
+        `${process.env.BACKEND_URL}/jsoporn_videolist_category`,
         {
             method: "POST",
             headers: {
