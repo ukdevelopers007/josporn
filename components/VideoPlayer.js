@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-    ThumbUpIcon,ThumbDownIcon, ClockIcon, FilmIcon, EyeIcon, PlusIcon, MinusIcon, CogIcon, InformationCircleIcon, DownloadIcon
+    ThumbUpIcon, ThumbDownIcon, ClockIcon, FilmIcon, EyeIcon, PlusIcon, MinusIcon, CogIcon, InformationCircleIcon, DownloadIcon
 } from '@heroicons/react/solid';
 import Router, { useRouter } from "next/router";
 import { Fragment } from 'react'
@@ -12,20 +12,28 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const VideoPlayer = ({ video_details,screenshots}) => {
+const VideoPlayer = ({ video_details }) => {
+
+
+    var screenshots = []
+    var baseUrl = video_details.thumbnail.replace("1.1.webp", "")
+
+    for (let index = 1; index <= 11; index++) {
+
+        screenshots.push(baseUrl + index + ".jpg")
+    }
 
 
     const videoPlayerRef = useRef(null)
     const playBtnRef = useRef(null)
     const router = useRouter()
 
-    
+
     const [Quality, setQuality] = useState("1080p")
-    const [VideoSrc, setVideoSrc] = useState(video_details.src['720p'])
     const [screenshotlayoutToggle, setscreenshotlayoutToggle] = useState(false)
     const [PlusVisible, setPlusVisible] = useState('flex')
     const [MinusVisible, setMinusVisible] = useState('hidden')
-    let videoQualities=[];
+    let videoQualities = [];
     videoQualities.push('1080p')
     videoQualities.push('720p')
     videoQualities.push('480p')
@@ -35,29 +43,32 @@ const VideoPlayer = ({ video_details,screenshots}) => {
     //Quality Changer Onclick
     const menuItemOnClick = (quality) => {
 
+        console.log(quality, Quality);
         setQuality(quality);
 
         if (quality != Quality) {
 
+            let quality2 = '';
+            if (quality == "1080p") {
+                quality2 = "720p"
+            }
+            if (quality == "720p") {
+                quality2 = "480p"
+            }
+            if (quality == "480p") {
+                quality2 = "360p"
+            }
+            if (quality == "360p") {
+                quality2 = "240p"
+            }
+        
             const currentTime = videoPlayerRef.current.currentTime;
+            videoPlayerRef.current.src = video_details.src[quality2];
             videoPlayerRef.current.load()
             videoPlayerRef.current.currentTime = currentTime
             videoPlayerRef.current.play();
 
-            let qua='';
-            if(quality == "1080p"){
-                qua="720p"
-            }
-            if(quality == "720p"){
-                qua="480p"
-            }
-            if(quality == "480p"){
-                qua="360p"
-            }
-            if(quality == "360p"){
-                qua="240p"
-            }
-            setVideoSrc(video_details.src[qua])
+
         }
     }
 
@@ -82,6 +93,17 @@ const VideoPlayer = ({ video_details,screenshots}) => {
 
     }
 
+    useEffect(() => {
+
+        setQuality("1080p")
+        videoPlayerRef.current.src = video_details.src['720p'];
+        videoPlayerRef.current.load()
+        videoPlayerRef.current.play()
+    }, [router.asPath])
+
+
+
+
 
     return (
 
@@ -90,11 +112,11 @@ const VideoPlayer = ({ video_details,screenshots}) => {
             <Script src="//imasdk.googleapis.com/js/sdkloader/ima3.js" strategy="beforeInteractive" />
             <Script onLoad={() => { initDesktopAutoplayExample() }} src="/vastAd.js" strategy="lazyOnload" />
 
-        
+
             <div id="mainContainer" className={`relative w-full aspect-video object-contain  group  shadow-2xl`}>
                 <video className={`w-full h-full cursor-pointer`} id="contentElement" onContextMenu={(e) => e.preventDefault()} ref={videoPlayerRef} poster={video_details.thumbnail} width="852" height="480" controls controlsList="nodownload"
                 >
-                    <source src={VideoSrc} type="video/mp4" />
+                    <source type="video/mp4" />
                 </video>
                 <div className={`absolute top-0 left-0 `} id="adContainer"></div>
                 <button className="hidden" id="playButton">Play</button>
@@ -105,13 +127,13 @@ const VideoPlayer = ({ video_details,screenshots}) => {
             <div className="flex justify-between py-2 text-sm md:text-lg   ">
                 <div className="flex justify-around items-center space-x-2 md:space-x-4 md:text-lg ">
 
-                    <div className='flex items-center space-x-1'>
+                    <div className=' items-center space-x-1 hidden'>
                         <ClockIcon className='h-6 hover:scale-100 text-red-700 md:h-9' />
                         <p className=' font-bold'>{video_details.duration}</p>
                     </div>
                     <div className='flex items-center space-x-1'>
                         <EyeIcon className="h-6 text-blue-600  md:h-9" />
-                        <p className=' font-bold'>{video_details.views}</p>
+                        <p className=' font-bold'>{video_details.view}</p>
                     </div>
                     <div className='flex items-center space-x-1'>
                         <ThumbUpIcon className="h-6 text-green-500  md:h-9" />
@@ -201,7 +223,7 @@ const VideoPlayer = ({ video_details,screenshots}) => {
 
             <div className='flex items-center justify-between'>
 
-         
+
 
                 <div onClick={openScreenShotLayout} className='my-1 hidden lg:flex items-center bg-gray-600 text-white  justify-between py-0.5 px-2 pr-3  hover:bg-gray-700  rounded cursor-pointer   md:w-1/4 md:space-x-4'>
 
@@ -216,7 +238,7 @@ const VideoPlayer = ({ video_details,screenshots}) => {
 
             {/* ScreenShots  */}
 
-            <div onClick={openScreenShotLayout} className='my-1 lg:hidden flex items-center bg-gray-600 text-white  justify-between py-0.5 px-2 pr-3  hover:bg-gray-700  rounded cursor-pointer   md:w-1/4 md:space-x-4'>
+            <div onClick={openScreenShotLayout} className='my-1 lg:hidden flex items-center bg-gray-600 text-white  justify-between py-0.5 px-2 pr-3  hover:bg-gray-700  rounded cursor-pointer   md:w-2/5 md:space-x-4'>
 
                 <p className='font-inter font-semibold text-lg md:text-2xl text-center px-3'>Screenshots</p>
                 <PlusIcon className={`icon hover:scale-100 ${PlusVisible}`} />

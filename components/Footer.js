@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import videosContext from '../context/videos/videosContext'
 import MultiformatAds from './Ads/MultiFormatAds';
 
@@ -12,9 +12,34 @@ function Footer() {
     const context = useContext(videosContext);
     const { spinnerLoading } = context;
 
+    const [scrollable, setscrollable] = useState(false)
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollable = document.body.scrollHeight > window.innerHeight;
+            if (scrollable) {
+                // Add your logic for when the page is scrollable
+                console.log('Page is scrollable');
+                setscrollable(true)
+            } else {
+                // Add your logic for when the page is not scrollable
+                console.log('Page is not scrollable');
+                setscrollable(false)
+            }
+        };
+
+        // Attach the scroll listener when the component mounts
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the listener when the component unmounts
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+
     return (
 
-        <div className={`font-footer mx-auto bg-theme  ${spinnerLoading ? "hidden" : ""}  mt-10 text-white`}>
+        <div className={`font-footer mx-auto bg-theme ${scrollable == false ? "hidden" : ""}   mt-10 text-white`}>
 
             < div className=" w-4/5 mx-auto p-1 mt-1 flex items-center justify-between  ">
                 <div className=" flex flex-wrap justify-between min-w-full">

@@ -125,7 +125,6 @@ export async function getStaticProps(context) {
 
 
 
-
     return {
         props: {
             finalDataArray: resData.finalDataArray,

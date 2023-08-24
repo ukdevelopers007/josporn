@@ -54,6 +54,10 @@ function VideoThumbnail({ details }) {
     }
   };
 
+  const savelocalStorage = () => {
+
+  }
+
 
   useEffect(() => {
     if (isHovered && currentScreenshotIndex === details.screenshots.length - 1) {
@@ -64,9 +68,10 @@ function VideoThumbnail({ details }) {
 
   return (
     <div className="">
-      <Link
+      <a
         href={`/video/${details.title}`}
         data-title={details.title}
+        onClick={savelocalStorage}
       >
         <div
           className={`animate-fade flex  items-start  flex-col justify-center  cursor-pointer  shadow-md shadow-blue-200  rounded-lg overflow-hidden transform transition duration-150`}
@@ -79,18 +84,19 @@ function VideoThumbnail({ details }) {
             <img
               src={details.thumbnail}
               alt="Video Thumbnail"
+              loading='lazy'
               className="hoverable-image"
             />
 
             {isHovered && details.screenshots.map((url, index) => {
               return (
                 <img
-                key={url}
+                  key={url}
                   src={url}
                   alt="Hover Image"
                   className={`absolute top-0 left-0 ${isHovered && index <= currentScreenshotIndex
-                      ? 'opacity-100'
-                      : 'opacity-0'
+                    ? 'opacity-100'
+                    : 'opacity-0'
                     } transition-opacity duration-300`} />
               );
             })}
@@ -125,7 +131,7 @@ function VideoThumbnail({ details }) {
             </div>
           </div>
         </div>
-      </Link>
+      </a>
       {/* </Link> */}
 
       {!videoPage && <PopunderAds />}

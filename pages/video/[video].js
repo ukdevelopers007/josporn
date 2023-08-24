@@ -19,21 +19,35 @@ import VideoPlayer from "../../components/VideoPlayer";
 import InterstitialAds from "../../components/Ads/InterstitialAds";
 import MultiformatAds from "../../components/Ads/MultiFormatAds";
 import Outstreams from "../../components/Ads/Outstream";
+import { BeatLoader } from "react-spinners";
 
-function Videoplayer({ serverError, relatedVideos, videodetails, screenshots }) {
-  const router = useRouter();
 
+function Videoplayer({ serverError, relatedVideos, videodetails }) {
+
+  
+  
   const [Quality, setQuality] = useState("720P");
-
-
   //This is strategy to hide "This video is no longer available" message from google search results by displaying the message after certain time using setTimeout
   const [showNotAvailableMessage, setshowNotAvailableMessage] = useState(false);
+
 
   useEffect(() => {
     setTimeout(() => {
       setshowNotAvailableMessage(true);
     }, 3000);
   }, []);
+
+  const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <div className="flex justify-center mx-auto mt-10 ">
+        <BeatLoader loading size={25} color={"red"} />
+      </div>
+    );
+  }
+
+
+  
 
   if (serverError) {
     return (
@@ -89,7 +103,7 @@ function Videoplayer({ serverError, relatedVideos, videodetails, screenshots }) 
         <div className="py-1  rounded overflow-hidden sm:cursor-pointer md:w-4/5">
           <VideoPlayer
             video_details={videodetails}
-            screenshots={screenshots}
+            
           />
         </div>
 
@@ -118,13 +132,22 @@ function Videoplayer({ serverError, relatedVideos, videodetails, screenshots }) 
 
 export default Videoplayer;
 
-export async function getServerSideProps(context) {
-  const { video } = context.query;
+
+export async function getStaticPaths() {
+  return {
+      paths: [{ params: { video: "Brunette with a hot blowjob cheered up her friends strong trunk" } }],
+      fallback: true, // false or 'blocking'
+  };
+}
+
+export async function getStaticProps(context) {
+
+  const { video } = context.params;
   const data = { title: video };
+
 
   var videodetails = {};
   var relatedVideos = [];
-  var screenshots = [];
   var serverError = false;
 
   try {
@@ -146,7 +169,6 @@ export async function getServerSideProps(context) {
 
 
     relatedVideos = resData.suggestedVideoItems;
-    screenshots = resData.screenshots;
     videodetails = resData.videoDetailsObj;
   } catch (error) {
     serverError = true;
@@ -157,7 +179,6 @@ export async function getServerSideProps(context) {
     props: {
       relatedVideos: relatedVideos,
       videodetails: videodetails,
-      screenshots: screenshots,
       serverError: serverError,
     },
   };

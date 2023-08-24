@@ -5,8 +5,8 @@ module.exports = {
   },
   env: {
     // FRONTEND_URL: 'http://localhost:3000',
-    BACKEND_URL: 'https://clownfish-app-jn7w9.ondigitalocean.app/josporn/',   
-    // BACKEND_URL: 'http://localhost:5000/josporn',   
+    BACKEND_URL: 'https://clownfish-app-jn7w9.ondigitalocean.app/josporn',   
+    // BACKEND_URL: 'http://localhost:5000/josporn',   11
     FACEBOOK_APP_SECRET: '691004714be90ba61d9ab8e0ba0d0c5e',
     FACEBOOK_APP_ID: '412940630805200',
     GOOGLE_CLIENT_ID: '1004706057785-k3qei8am5at1g5789vqudsgr13455a0o.apps.googleusercontent.com',
