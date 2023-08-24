@@ -4,8 +4,8 @@ module.exports = {
     domains: ['links.papareact.com', 'platform-lookaside.fbsbx', 'firebasestorage.googleapis.com', 'lh3.googleusercontent.com', 'avatars.githubusercontent.com', 'www.pexels.com', 'hotdesipics.co', 'i.picsum.photos', 'static-ca-cdn.eporner.com', 'imggen.eporner.com', 'www.pezporn.com', 'https://www.pornpics.de/', 'cdni.pornpics.de', 'static-sg-cdn.eporner.com']
   },
   env: {
-    FRONTEND_URL: 'http://localhost:3000',
-    // BACKEND_URL: 'https://clownfish-app-jn7w9.ondigitalocean.app/josporn',   
+    // FRONTEND_URL: 'http://localhost:3000',
+    BACKEND_URL: 'https://clownfish-app-jn7w9.ondigitalocean.app/josporn',   
     BACKEND_URL: 'http://localhost:5000/josporn',   
     FACEBOOK_APP_SECRET: '691004714be90ba61d9ab8e0ba0d0c5e',
     FACEBOOK_APP_ID: '412940630805200',
