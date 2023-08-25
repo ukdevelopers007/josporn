@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
-import Videos from "../../components/Videos";
+import Videos from "../../../components/Videos";
 import {
   ThumbUpIcon,
   ClockIcon,
@@ -15,10 +15,10 @@ import {
 } from "@heroicons/react/solid";
 // import { scrapeVideos } from '../../config/spangbang';
 import { getCookie, setCookie } from "cookies-next";
-import VideoPlayer from "../../components/VideoPlayer";
-import InterstitialAds from "../../components/Ads/InterstitialAds";
-import MultiformatAds from "../../components/Ads/MultiFormatAds";
-import Outstreams from "../../components/Ads/Outstream";
+import VideoPlayer from "../../../components/VideoPlayer";
+import InterstitialAds from "../../../components/Ads/InterstitialAds";
+import MultiformatAds from "../../../components/Ads/MultiFormatAds";
+import Outstreams from "../../../components/Ads/Outstream";
 import { BeatLoader } from "react-spinners";
 
 
@@ -133,19 +133,26 @@ function Videoplayer({ serverError, relatedVideos, videodetails }) {
 export default Videoplayer;
 
 
-export async function getStaticPaths() {
+
+
+export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { video: "Brunette with a hot blowjob cheered up her friends strong trunk" } }],
-    fallback: true, // false or 'blocking'
-  };
+    paths: [
+      {
+        params: {
+          video: 'Chick in soft lingerie fucks in POV', number:'19419'
+        },
+      }, // See the "paths" section below
+    ],
+    fallback: true, // false or "blocking"
+  }
 }
 
 export async function getStaticProps(context) {
 
-  const { video } = context.params;
+  const { video, number } = context.params;
 
-  const keys = video.trim().split("*")
-  const data = { title: keys[1], number: keys[0] };
+  const data = { title: video, number: number };
 
 
   var videodetails = {};
