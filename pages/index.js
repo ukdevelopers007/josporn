@@ -40,7 +40,7 @@ export default function Home({
 
       <Category_slider />
 
-      <MultiformatAds />
+      {/* <MultiformatAds /> */}
       <PopunderAds />
 
       <main className="flex-row flex  mt-1 md:mt-3 md:space-x-3 space-x-2">

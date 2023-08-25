@@ -24,7 +24,7 @@ function Sidebar() {
                 return (
 
                     <Link key={category.title} href={`/${category.title.trim()}`}>
-                        <h2 className="w-44 text-md border-2 border-white hover:bg-button rounded-md text-white  p-1 pl-4 pr-2 cursor-pointer bg-theme capitalize">{category.title}</h2>
+                        <h2 className="w-44 text-md border-2 border-white hover:bg-button-secondary hover:text-light-text rounded-md text-dark-text  p-1 pl-4 pr-2 cursor-pointer bg-gray-300 capitalize">{category.title}</h2>
                     </Link>
 
                 )

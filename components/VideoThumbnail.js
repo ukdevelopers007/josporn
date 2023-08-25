@@ -68,13 +68,13 @@ function VideoThumbnail({ details }) {
 
   return (
     <div className="">
-      <a
+      <Link
         href={`/video/${details.number}/${details.title}`}
         data-title={details.title}
         onClick={savelocalStorage}
       >
         <div
-          className={`animate-fade flex  items-start  flex-col justify-center  cursor-pointer  shadow-md shadow-blue-200  rounded-lg overflow-hidden transform transition duration-150`}
+          className={`animate-fade flex  items-start  flex-col justify-center  cursor-pointer  shadow-md shadow-red-200  rounded-lg overflow-hidden transform transition duration-150`}
         >
           <div
             className="relative group"
@@ -131,7 +131,7 @@ function VideoThumbnail({ details }) {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
       {/* </Link> */}
 
       {!videoPage && <PopunderAds />}

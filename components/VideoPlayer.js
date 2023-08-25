@@ -131,10 +131,7 @@ const VideoPlayer = ({ video_details }) => {
                         <ClockIcon className='h-6 hover:scale-100 text-red-700 md:h-9' />
                         <p className=' font-bold'>{video_details.duration}</p>
                     </div>
-                    <div className='flex items-center space-x-1'>
-                        <EyeIcon className="h-6 text-blue-600  md:h-9" />
-                        <p className=' font-bold'>{video_details.view}</p>
-                    </div>
+                    
                     <div className='flex items-center space-x-1'>
                         <ThumbUpIcon className="h-6 text-green-500  md:h-9" />
                         <p className=' font-bold'>{video_details.like}</p>

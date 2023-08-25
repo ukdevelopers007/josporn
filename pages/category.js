@@ -32,6 +32,15 @@ function shuffle(array) {
 
 function Index() {
 
+    jsonData.sort((a, b) => {
+        if (a.title && b.title) {
+            return a.title.localeCompare(b.title);
+        }
+        // Handle cases where one or both objects don't have a "name" property
+        return 0; // No change in sorting order
+    });
+    
+
 
     return (
 
@@ -55,10 +64,9 @@ function Index() {
             <MultiformatAds />
 
             <div className={`grid grid-cols-3 py-3 sm:grid-cols-3 gap-2 md:gap-3 lg:gap-4  md:grid-cols-4 lg:grid-cols-5`}>
-                {shuffle(jsonData).map(category => {
-
+                {jsonData.map(category => {
                     return (
-                        <Link key={category.title} href={`/${category.title.trim()}`}>
+                        <Link key={category.title} href={`/${category.title}`}>
                                 <div className='  relative hover:scale-105 transform transition duration-150 rounded   aspect-box  ' >
                                     <img
                                         className='object-cover w-full'
@@ -66,10 +74,9 @@ function Index() {
                                         src={category.image}
                                         loading="lazy"
                                     ></img>
-                                    <h2 className='font-inter rounded-b absolute text-sm sm:text-lg  px-1 bottom-0 w-full text-center  z-10 text-white bg-transparent bg-black bg-opacity-50'>{category.title}</h2>
+                                    <h2 className='font-inter rounded-b absolute text-sm sm:text-lg  px-1 bottom-0 w-full text-center  z-10 text-white  bg-black bg-opacity-50'>{category.title}</h2>
                                 </div>
                         </Link>
-                        // items[i].charAt(0).toUpperCase() + items[i].substring(1);
 
 
                     )

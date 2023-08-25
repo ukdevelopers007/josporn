@@ -39,7 +39,7 @@ function Footer() {
 
     return (
 
-        <div className={`font-footer mx-auto bg-theme ${scrollable == false ? "hidden" : ""}   mt-10 text-white`}>
+        <div className={`font-footer mx-auto bg-secondary ${scrollable == false ? "hidden" : ""}   mt-10 text-white`}>
 
             < div className=" w-4/5 mx-auto p-1 mt-1 flex items-center justify-between  ">
                 <div className=" flex flex-wrap justify-between min-w-full">

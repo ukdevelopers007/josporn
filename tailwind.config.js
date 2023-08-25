@@ -29,13 +29,22 @@ module.exports = {
         'xl': "1300px",
         '2xl': "1600px"
       },
+      gradients: {
+        'theme-gradient': ['#A40606', '#D98324'],
+      },
       colors: {
-        'github': '#24292F',
-        "color": "#414a4c",
-        "theme": "#13274F",
-        "button": "#5072A7",
-        "button_hover": "#93c5fd",
-        
+        'primary': '#3498db',      // Blue
+        'secondary': '#880808',    // Red
+        'dark-text': '#222222',    // Dark text
+        'light-text': '#ffffff',   // Light text
+        'button-primary': '#3498db',   // Default button color
+        'button-secondary': '#e74c3c', // Secondary button color
+        'button-primary-hover': '#2581c5',   // Default button hover color
+        'button-secondary-hover': '#c0392b', // Secondary button hover color
+        'body-bg': '#f5f5f5',      // Body background
+        'header-bg': '#ffffff',    // Header background
+        'footer-bg': '#333333',    // Footer background
+        'card-bg': '#ffffff',
       },
       fontFamily: {
         body: ['Pushster'],
@@ -59,5 +68,6 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('tailwind-scrollbar-hide')]
+    require('tailwind-scrollbar-hide'), 
+    require('tailwindcss-gradients')]
 }
