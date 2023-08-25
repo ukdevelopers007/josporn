@@ -69,7 +69,7 @@ function VideoThumbnail({ details }) {
   return (
     <div className="">
       <a
-        href={`/video/${details.title}`}
+        href={`/video/${details.number}*${details.title}`}
         data-title={details.title}
         onClick={savelocalStorage}
       >

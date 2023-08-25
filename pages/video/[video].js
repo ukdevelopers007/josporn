@@ -24,8 +24,8 @@ import { BeatLoader } from "react-spinners";
 
 function Videoplayer({ serverError, relatedVideos, videodetails }) {
 
-  
-  
+
+
   const [Quality, setQuality] = useState("720P");
   //This is strategy to hide "This video is no longer available" message from google search results by displaying the message after certain time using setTimeout
   const [showNotAvailableMessage, setshowNotAvailableMessage] = useState(false);
@@ -47,7 +47,7 @@ function Videoplayer({ serverError, relatedVideos, videodetails }) {
   }
 
 
-  
+
 
   if (serverError) {
     return (
@@ -103,7 +103,7 @@ function Videoplayer({ serverError, relatedVideos, videodetails }) {
         <div className="py-1  rounded overflow-hidden sm:cursor-pointer md:w-4/5">
           <VideoPlayer
             video_details={videodetails}
-            
+
           />
         </div>
 
@@ -135,15 +135,17 @@ export default Videoplayer;
 
 export async function getStaticPaths() {
   return {
-      paths: [{ params: { video: "Brunette with a hot blowjob cheered up her friends strong trunk" } }],
-      fallback: true, // false or 'blocking'
+    paths: [{ params: { video: "Brunette with a hot blowjob cheered up her friends strong trunk" } }],
+    fallback: true, // false or 'blocking'
   };
 }
 
 export async function getStaticProps(context) {
 
   const { video } = context.params;
-  const data = { title: video };
+
+  const keys = video.trim().split("*")
+  const data = { title: keys[1], number: keys[0] };
 
 
   var videodetails = {};
