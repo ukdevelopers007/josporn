@@ -31,7 +31,7 @@ function Category({ finalDataArray, lastPage, currentPage }) {
                 <title>{category}: Free Porn Videos and HD Sex Movies</title>
                 <meta
                     name="description"
-                    content="Josporn is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on Josporn!"
+                    content="FuckVideo is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on FuckVideo!"
                 />
 
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,7 +39,7 @@ function Category({ finalDataArray, lastPage, currentPage }) {
             </Head>
 
 
-            <Header keyword={category.replace("+", " ")} pageNumber={currentPageNumberURL} />
+            <Header keyword={category} pageNumber={currentPageNumberURL} />
             <div className="flex">
                 <Sidebar />
                 <Videos data={finalDataArray} />

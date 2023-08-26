@@ -24,10 +24,10 @@ function Category({ currentPage, lastPage, finalDataArray }) {
   return (
     <>
       <Head>
-        <title>Josporn: Free Porn Videos and HD Sex Movies</title>
+        <title>FuckVideo: Free Porn Videos and HD Sex Movies</title>
         <meta
           name="description"
-          content="Josporn is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on Josporn!"
+          content="FuckVideo is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on FuckVideo!"
         />
       </Head>
 

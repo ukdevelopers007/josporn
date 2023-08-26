@@ -97,11 +97,12 @@ function Navbar() {
     const handleSearchIconClick = () => {
         if (searchBarVisibility === 'hidden') {
             setsearchBarVisibility('flex')
+            router.push('/search')
+
         } else {
             setsearchBarVisibility('hidden')
 
         }
-        router.push('/search')
     }
     const goSearch = (e) => {
         e.preventDefault();
@@ -174,7 +175,9 @@ function Navbar() {
                                 <div className='flex items-center space-x-1' >
 
                                     <Link href='/'>
-                                        <p className=' align-center text-center font-Dancing font-bold  text-3xl pl-1 pr-1 cursor-pointer lg:text-left lg:ml-6 '>Chutlunds.com</p>
+                                        
+                                        <p className=' align-center text-center font-blackops  text-3xl pl-1 pr-1 cursor-pointer lg:text-left lg:ml-6 '>🅵🆄🅲🅺🆅🅸🅳🅴🅾
+</p>
                                     </Link>
                                     {location &&
                                         <div className='cursor-pointer' onClick={handleClickFlag}>
@@ -379,7 +382,8 @@ function Navbar() {
                         <img src='/erotic.png' alt="loading..." className='w-14' />
 
                         <Link href='/'>
-                            <p className=' align-center text-center font-Dancing font-bold  text-4xl cursor-pointer lg:text-left '>Chutlunds.com</p>
+                            <p className=' align-center text-center font-blackops  text-4xl cursor-pointer lg:text-left '>🅵🆄🅲🅺🆅🅸🅳🅴🅾
+</p>
                         </Link>
                         {location &&
 
@@ -438,7 +442,7 @@ function Navbar() {
                                     </div>
                                 }
                             </div>
-                            <button type="submit" className='ml-4 bg-red-500  hover:bg-red-600 text-white text-sm h-10  pl-4 pr-4 m-1 rounded '>Search</button>
+                            <button type="submit" className='ml-4 mr-8 bg-red-500  hover:bg-red-600 text-white text-sm h-10  pl-4 pr-4 m-1 rounded '>Search</button>
 
 
 
@@ -455,7 +459,7 @@ function Navbar() {
                             </button>
                         </div> */}
 
-                        <div className='flex items-center '>
+                        <div className='flex items-center hidden'>
                             {/* <UserIcon className='h-8 w-8' /> */}
 
                             {!loggedIn &&

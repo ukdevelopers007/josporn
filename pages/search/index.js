@@ -84,9 +84,9 @@ function Search({ tags }) {
         <div className=" ">
 
             <Head>
-                <title>Most popular and trending porn searches- Chutlunds</title>
+                <title>Most popular and trending porn searches- FuckVideo</title>
                 <meta name="description"
-                    content="Most popular and trending porn searches - HD porn videos and adult movies- Chutlunds" />
+                    content="Most popular and trending porn searches - HD porn videos and adult movies - FuckVideo" />
             </Head>
 
             <Outstreams />

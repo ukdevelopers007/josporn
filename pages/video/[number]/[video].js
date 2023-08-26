@@ -74,7 +74,7 @@ function Videoplayer({ serverError, relatedVideos, videodetails }) {
 
       <Head>
         <title>
-          {`${videodetails.title.trim().replace(/ /g, '-')}- | 720p Josporns`}
+          {`${videodetails.title.trim().replace(/ /g, '-')}- | 720p FuckVideo`}
         </title>
         <meta
           name="description"

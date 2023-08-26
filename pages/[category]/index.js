@@ -17,6 +17,7 @@ import MultiformatAds from "../../components/Ads/MultiFormatAds";
 import PopunderAds from "../../components/Ads/Popunder";
 import Pagination from "../../components/Pagination";
 import { BeatLoader } from "react-spinners";
+import Header from "../../components/searchPage/Header";
 
 
 export default function Home({
@@ -56,7 +57,7 @@ export default function Home({
                 <title>{category}: Free Porn Videos and HD Sex Movies</title>
                 <meta
                     name="description"
-                    content="Josporn is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on Josporn!"
+                    content="FuckVideo is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on FuckVideo!"
                 />
 
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -65,7 +66,6 @@ export default function Home({
 
             <Category_slider />
 
-            <MultiformatAds />
             <PopunderAds />
 
             <main className="flex-row flex  mt-1 md:mt-3 md:space-x-3 space-x-2">
@@ -78,6 +78,8 @@ export default function Home({
                         </h2>{" "}
                     </div>
 
+
+                    <Header keyword={category} pageNumber="1"/>
                     <Videos data={finalDataArray} />
 
                     {/* PAGINATION */}
@@ -91,6 +93,8 @@ export default function Home({
             <footer>
                 <MultiformatAds />
                 <Outstreams />
+                <MultiformatAds />
+
             </footer>
         </div>
     );

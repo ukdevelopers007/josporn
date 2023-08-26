@@ -39,9 +39,7 @@ function Videos({ data }) {
 
     return (
         <div className=" w-full h-fit ">
-            {currentPath !== "blocked" &&
-                <MultiformatAds />
-            }
+
 
 
             <div className='grid grid-cols-2 py-1 gap-2 md:gap-3 lg:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
@@ -80,6 +78,10 @@ function Videos({ data }) {
                         </>
                     }
                 </>
+            }
+
+            {currentPath !== "blocked" &&
+                <MultiformatAds />
             }
 
 

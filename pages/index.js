@@ -28,10 +28,10 @@ export default function Home({
   return (
     <div className=" ">
       <Head>
-        <title>Josporn: Free Porn Videos and HD Sex Movies</title>
+        <title>FuckVideo: Free Porn Videos and HD Sex Movies</title>
         <meta
           name="description"
-          content="Josporn is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on Josporn!"
+          content="FuckVideo is the hottest free porn site in the world! Cum like never before and explore millions of fresh and free porn videos! Get lit on FuckVideo!"
         />
 
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -53,12 +53,14 @@ export default function Home({
             </h2>{" "}
           </div>
 
+          <HomepageTitle title='Popular Porn Videos' />
+
           <Videos data={finalDataArray} />
 
-            {/* PAGINATION */}
-            
+          {/* PAGINATION */}
 
-            <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/page/${parseInt("1") - 1}`, next: `/page/${parseInt("1") + 1}` }} />
+
+          <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/page/${parseInt("1") - 1}`, next: `/page/${parseInt("1") + 1}` }} />
 
 
         </div>

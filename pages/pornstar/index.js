@@ -80,8 +80,8 @@ function Index() {
 
         <div className="">
             <Head>
-                <title>Top Pornstars and Models In Full-Length Free Sex Videos | Chutlunds</title>
-                <meta name="description" content="Catch the most popular PORNSTARS and MODELS, right here on the biggest FREE PORN tube. Chutlunds.com has a bevy of luscious babes that are naked for you 24/7!" />
+                <title>Top Pornstars and Models In Full-Length Free Sex Videos | FuckVideo</title>
+                <meta name="description" content="Catch the most popular PORNSTARS and MODELS, right here on the biggest FREE PORN tube. FuckVideo.live has a bevy of luscious babes that are naked for you 24/7!" />
             </Head>
 
 
@@ -108,10 +108,9 @@ function Index() {
 
             <div className='my-1 mt-6 grid grid-cols-3 p-1 sm:grid-cols-3 gap-2 md:gap-3 lg:gap-4  md:grid-cols-5 lg:grid-cols-6'>
                 {suggestedData.length != 0 && suggestedData.map(pornstar => {
-                    const posrnstar_Code = pornstar.href.substring(1, pornstar.href.indexOf('/pornstar'))
                     return (
 
-                        <Link key={pornstar.Name} href={`/pornstar/${posrnstar_Code}/${pornstar.Name.trim().toLowerCase().replace(/ /g, "+")}`}>
+                        <Link key={pornstar.Name} href={`/search/${pornstar.Name.trim().toLowerCase().replace(/ /g, "+")}`}>
                                 <div className='  relative hover:scale-105 transform transition duration-150 ' >
                                     <img
                                         className={`object-cover w-full rounded  `}
@@ -142,9 +141,8 @@ function Index() {
                     <div className={`grid grid-cols-3 p-1 sm:grid-cols-3 gap-2 md:gap-3 lg:gap-4  md:grid-cols-5 lg:grid-cols-6 `}>
                         {data.map(pornstar => {
 
-                            const posrnstar_Code = pornstar.href.substring(1, pornstar.href.indexOf('/pornstar'))
                             return (
-                                <Link key={pornstar.Name} href={`/pornstar/${posrnstar_Code}/${pornstar.Name.trim().toLowerCase().replace(/ /g, "+")}`}>
+                                <Link key={pornstar.Name} href={`/search/${pornstar.Name.trim().toLowerCase().replace(/ /g, "+")}`}>
                                         <div className='  relative hover:scale-105 transform transition duration-150 ' >
                                             <img
                                                 className={`object-cover w-full rounded  `}

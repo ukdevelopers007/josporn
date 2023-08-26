@@ -60,6 +60,7 @@ module.exports = {
         SFuiDisplay: ['SF UI Display'],
         Abhayalibre: ['Abhaya Libre'],
         Dancing: ['Dancing Script'],
+        blackops: ['Black Ops One'],
       }
     },
   },
