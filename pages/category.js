@@ -3,8 +3,6 @@ import React, { useEffect } from 'react';
 import jsonData from "../JsonData/category.json"
 
 import Link from 'next/link'
-import RecommendedAds from '../components/Ads/RecommendedAds';
-import BannerAds from '../components/Ads/BannerAds';
 import Outstreams from '../components/Ads/Outstream';
 import Head from 'next/head'
 import InterstitialAds from '../components/Ads/InterstitialAds';

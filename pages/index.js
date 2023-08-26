@@ -5,14 +5,11 @@ import Sidebar from "../components/Sidebar";
 import Videos from "../components/Videos";
 import React from "react";
 import videosContext from "../context/videos/videosContext";
-// import { uploadString, getDownloadURL, uploadBytes } from "firebase/storage";
-import RecommendedAds from "../components/Ads/RecommendedAds";
 
 import Category_slider from "../components/category_slider";
 import HomepageTitle from "../components/HomepageTitle";
 import InterstitialAds from "../components/Ads/InterstitialAds";
 import { useRouter } from "next/router";
-import BannerAds from "../components/Ads/BannerAds";
 import Outstreams from "../components/Ads/Outstream";
 import MultiformatAds from "../components/Ads/MultiFormatAds";
 import PopunderAds from "../components/Ads/Popunder";

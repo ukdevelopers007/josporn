@@ -8,6 +8,12 @@ import Head from "next/head";
 
 function InstantMessageAds() {
 
+    useEffect(() => {
+        if (window.AdProvider) {
+            window.AdProvider.push({ serve: {} });
+        }
+    }, []);
+
     //Outstream Ads is replaced in place of banner ads
 
     const context = useContext(videosContext);
@@ -28,9 +34,8 @@ function InstantMessageAds() {
 
             </Head >
 
-            <Script
-                src="https://syndication.realsrv.com/splash.php?idzone=4580188&capping=0"
-            ></Script>
+            <Script async src="https://a.magsrv.com/ad-provider.js" />
+            <ins className="eas6a97888e" data-zoneid="5063204"></ins>
 
 
 

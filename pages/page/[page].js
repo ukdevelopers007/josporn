@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 
 import Sidebar from "../../components/Sidebar";
 import Videos from "../../components/Videos";
-import RecommendedAds from "../../components/Ads/RecommendedAds";
 import Head from "next/head";
 import { BeatLoader } from "react-spinners";
 import Pagination from "../../components/Pagination";
@@ -40,7 +39,6 @@ function Category({ currentPage, lastPage, finalDataArray }) {
       <Pagination data={{ currentPage:currentPage, lastPage: lastPage, previous: `/page/${parseInt(currentPage) - 1}`, next: `/page/${parseInt(currentPage) + 1}` }} />
 
 
-      <RecommendedAds />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import Sidebar from "../../../components/Sidebar";
 import Videos from "../../../components/Videos";
 import Header from '../../../components/searchPage/Header'
-import RecommendedAds from '../../../components/Ads/RecommendedAds';
 import Head from 'next/head'
 import Pagination from '../../../components/Pagination';
 import { useEffect } from 'react';
@@ -75,7 +74,6 @@ function Category({ finalDataArray, lastPage }) {
         <Pagination data={{ currentPage: "1", lastPage: lastPage, previous: `/search/${searchkey}/page/${parseInt("1") - 1}`, next: `/search/${searchkey}/page/${parseInt("1") + 1}` }} />
       }
 
-      <RecommendedAds />
     </>
   )
 }
