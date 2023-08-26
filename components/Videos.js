@@ -78,9 +78,6 @@ function Videos({ data }) {
                 </>
             }
 
-            {currentPath !== "blocked" &&
-                <MultiformatAds />
-            }
 
 
 

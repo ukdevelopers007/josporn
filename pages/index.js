@@ -40,15 +40,11 @@ export default function Home({
       {/* <MultiformatAds /> */}
       <PopunderAds />
 
-      <main className="flex-row flex  mt-1 md:mt-3 md:space-x-3 space-x-2">
+      <main className="flex-row flex  mt-1 md:mt-3 md:space-x-3 space-x-2 xl:pt-8 pt-4">
         <Sidebar />
         <div>
 
-          <div className="flex justify-between items-center  rounded bg-button text-white  p-2 px-3 ">
-            <h2 className="lg:text-2xl text-lg  font-arial ">
-              Popular Porn Videos
-            </h2>{" "}
-          </div>
+        
 
           <HomepageTitle title='Popular Porn Videos' />
 
@@ -65,7 +61,13 @@ export default function Home({
 
       <footer>
         <MultiformatAds />
+        <MultiformatAds />
         <Outstreams />
+        <footer >
+        <a className='' href="https://www.fuckvideo.live/">.</a>
+        <a className='' href="https://www.chutlunds.com/">.</a>
+        <a className='' href="https://www.desikahaniya.in/">.</a>
+      </footer>
       </footer>
     </div>
   );

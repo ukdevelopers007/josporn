@@ -175,7 +175,7 @@ function Navbar() {
                                 <div className='flex items-center space-x-1' >
 
                                     <Link href='/'>
-                                        <p className=' align-center text-center font-Dancing font-bold  text-3xl pl-1 pr-1 cursor-pointer lg:text-left lg:ml-6 '>Chutlunds.com</p>
+                                        <p className=' align-center text-center font-Dancing font-bold  text-3xl pl-1 pr-1 cursor-pointer lg:text-left lg:ml-6 '>FuckVideo</p>
                                     </Link>
                                     {location &&
                                         <div className='cursor-pointer' onClick={handleClickFlag}>
@@ -380,7 +380,7 @@ function Navbar() {
                         <img src='/erotic.png' alt="loading..." className='w-14' />
 
                         <Link href='/'>
-                            <p className=' align-center text-center font-Dancing font-bold  text-4xl cursor-pointer lg:text-left '>Chutlunds.com</p>
+                            <p className=' align-center text-center font-Dancing font-bold  text-4xl cursor-pointer lg:text-left '>FuckVideo</p>
                         </Link>
                         {location &&
 

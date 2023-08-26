@@ -1,10 +1,7 @@
 User-agent: *
-Disallow: /pornstar/query
-Disallow: /search/query   
-Disallow: /category/query
-Disallow: http://chutlunds.com/
-Disallow: https://chutlunds.com/
+Disallow: /pornstar
+Disallow: /search   
 Allow: /
 
 
-Sitemap: https://www.chutlunds.com/sitemap.xml
+Sitemap: https://www.fuckvideo.live/sitemap.xml

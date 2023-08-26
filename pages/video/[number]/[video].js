@@ -119,7 +119,6 @@ function Videoplayer({ serverError, relatedVideos, videodetails }) {
         </div>
         <Videos data={relatedVideos} />
 
-        <MultiformatAds />
         <Outstreams />
         <MultiformatAds />
 

@@ -62,20 +62,14 @@ export default function Home({
                 <meta name="msvalidate.01" content="8A6530C78E46DD0011117B2ECB618480" />
             </Head>
 
-            <Category_slider />
 
             <PopunderAds />
 
-            <main className="flex-row flex  mt-1 md:mt-3 md:space-x-3 space-x-2">
+            <main className="flex-row flex  md:space-x-3 space-x-2 pt-4 xl:pt-8">
                 <Sidebar />
                 <div>
 
-                    <div className="flex justify-between items-center  rounded bg-button text-white  p-2 px-3 ">
-                        <h2 className="lg:text-2xl text-lg  font-arial ">
-                            {convertToName(category.replace("-", " "))} Porn Videos
-                        </h2>{" "}
-                    </div>
-
+                
 
                     <Header keyword={category} pageNumber="1"/>
                     <Videos data={finalDataArray} />
@@ -87,13 +81,6 @@ export default function Home({
 
                 </div>
             </main>
-
-            <footer>
-                <MultiformatAds />
-                <Outstreams />
-                <MultiformatAds />
-
-            </footer>
         </div>
     );
 }

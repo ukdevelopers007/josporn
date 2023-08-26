@@ -94,7 +94,7 @@ function Footer() {
             </div>
 
             <div className='flex p-2 items-center justify-between  w-4/5 mx-auto'>
-                <p className='text-sm sm:text-md md:text-lg font-poppins font-bold'>© 2022 Chutlunds.com IS A FREE PORN VIDEOS</p>
+                <p className='text-sm sm:text-md md:text-lg font-poppins font-bold'>© 2022 FuckVideo.live IS A FREE PORN VIDEOS</p>
 
                 <div className='p-2  rounded'>
 
