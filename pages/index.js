@@ -14,7 +14,7 @@ import Outstreams from "../components/Ads/Outstream";
 import MultiformatAds from "../components/Ads/MultiFormatAds";
 import PopunderAds from "../components/Ads/Popunder";
 import Pagination from "../components/Pagination";
-
+ 
 export default function Home({
   finalDataArray,
   lastPage,
