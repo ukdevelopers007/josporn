@@ -25,8 +25,7 @@ function MyApp({ Component, pageProps }) {
     <>
 
       <Head>
-        <meta name='asg_verification' content='vVcWCcbbgmnqv221hpAjPojb' />
-        <meta name="exoclick-site-verification" content="6b1112fe173bdf782d96975e70bd4b95"></meta>
+
         <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -38,15 +37,13 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#ffffff" />
 
         {/* Ads Netword Verification  */}
-        <meta name="hilltopads-site-verification" content="28c33bbf5c61164c74b2bdfcc2ff1d44bc9c45b5" />
-        <meta name='asg_verification' content='vVcWCcbbgmnqv221hpAjPojb' />
-        <meta name="exoclick-site-verification" content="6b1112fe173bdf782d96975e70bd4b95"></meta>
 
+        <meta name="6a97888e-site-verification" content="fddab5ac02a0f257a184622ea636239c"/>
       </Head>
 
       <Script
         strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-6JFQKLE3DK"
+        src="https://www.googletagmanager.com/gtag/js?id=G-JDD6RJ6XQQ"
       />
 
       <Script id="gtm-script" strategy="afterInteractive">
@@ -54,7 +51,7 @@ function MyApp({ Component, pageProps }) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-6JFQKLE3DK');`}
+        gtag('config', 'G-JDD6RJ6XQQ');`}
       </Script>
 
 
