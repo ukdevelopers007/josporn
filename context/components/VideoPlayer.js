@@ -81,14 +81,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
 
 
     const download = () => {
-
-        if (!loggedIn) {
-            setCookie('videoRoute', window.location.href
-            );
-            router.push('/account/login')
-        } else {
-            router.push(VideoSrc)
-        }
+        router.push(VideoSrc)
     }
 
 
@@ -120,7 +113,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
             <Script src="//imasdk.googleapis.com/js/sdkloader/ima3.js" strategy="beforeInteractive" />
             <Script onLoad={() => { initDesktopAutoplayExample() }} src="/vastAd.js" strategy="lazyOnload" />
 
-        
+
             <div id="mainContainer" className={`relative w-full aspect-video object-contain  group  shadow-2xl`}>
                 <video className={`w-full h-full cursor-pointer`} id="contentElement" onContextMenu={(e) => e.preventDefault()} ref={videoPlayerRef} poster={video_details.thumbnail} width="852" height="480" controls controlsList="nodownload"
                 >
@@ -153,9 +146,7 @@ const VideoPlayer = ({ video_details, Qualitys, videolink_qualities_screenshots,
                 </div>
                 <div className='flex items-center justify-end space-x-2 lg:space-x-4'>
 
-                    {/* <DownloadIcon className='h-7 text-gray-700' /> */}
-
-                    <button onClick={download} className='font-inter text-[12px] lg:text-lg px-2 lg:px-4 py-1 lg:py-1.5 bg-button rounded-md text-white text-center lg:mt-1'>Download</button>
+                    <button onClick={download} className='font-inter text-[12px] lg:text-lg px-2 lg:px-4 py-1 lg:py-1.5 bg-secondary rounded-md text-white text-center lg:mt-1'>Download</button>
                     <Menu as="div" className="relative  text-left">
                         <div className=' w-fit relative '>
                             <Menu.Button className="flex items-center space-x-1">
